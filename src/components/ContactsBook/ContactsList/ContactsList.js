@@ -1,4 +1,3 @@
-
 import css from './contactlist.module.css'
 
 import { useDispatch, useSelector } from "react-redux";

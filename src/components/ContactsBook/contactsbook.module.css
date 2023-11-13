@@ -1,0 +1,18 @@
+.container {
+  margin-left: 10px;
+}
+
+.header {
+  font-size: 35px;
+  font-weight: 800;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}

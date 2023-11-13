@@ -1,0 +1,9 @@
+.input {
+  width: 175px;
+  padding: 10px;
+  padding-left: 25px;
+  border: none;
+  background-color: azure;
+
+  outline: none;
+}

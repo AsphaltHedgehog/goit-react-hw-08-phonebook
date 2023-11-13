@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.item {
+  display: flex;
+  gap: 25px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.btn {
+  padding: 0 15px;
+  border: none;
+  background-color: turquoise;
+  border-radius: 4px;
+  transition: transform 250ms ease-in;
+
+  outline: none;
+}
+
+.btn:hover,
+.btn:focus {
+  transform: scale(1.2);
+}

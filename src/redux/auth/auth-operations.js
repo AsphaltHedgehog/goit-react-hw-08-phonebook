@@ -48,15 +48,12 @@ const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 
 
 const currentAuth = createAsyncThunk('auth/current', async (token, thunkAPI) => {
+  if (!token) {
+    return
+  };
+  currentToken.set(token)
   try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
-
-    const { data } = await axios.get('/users/current', null, config);
-    currentToken.set(token)
+    const { data } = await axios.get('/users/current');
     return data;
   } catch (error) {
     currentToken.unset()

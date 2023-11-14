@@ -17,6 +17,12 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
+    [authOperations.register.rejected](_, action) {
+      console.log(action);
+      if (action.error.message === 'Rejected') {
+        alert('this mail already register')
+      }
+    },
     [authOperations.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
@@ -28,7 +34,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
     },
     [authOperations.currentAuth.fulfilled](state, action) {
-      state.user = {action};
+      state.user = {...action.payload};
       state.isLoggedIn = true;
     }
   }

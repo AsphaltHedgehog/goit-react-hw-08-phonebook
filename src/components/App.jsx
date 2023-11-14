@@ -47,12 +47,12 @@ const App = () => {
   const fetchCurrentUser = authOperations.currentAuth
 
   useEffect(() => {
-    console.log(token);
     if (firstRender < 1) {
         setFirstRender(1)
-        token && dispatch(fetchCurrentUser(token))
+      token && dispatch(fetchCurrentUser(token))
+      return 
       }
-    });
+    }, [firstRender, token, dispatch, fetchCurrentUser]);
   
   
   return (

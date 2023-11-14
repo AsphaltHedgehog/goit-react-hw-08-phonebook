@@ -3,19 +3,23 @@ import css from './contactlist.module.css'
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectStatusFilter, selectContacts} from "redux/selectors";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchContacts, deleteContact } from 'redux/operation';
 
 function ContactsList() {
   const {items, isLoading, error} = useSelector(selectContacts);
   const filter = useSelector(selectStatusFilter);
-
+  const [firstRender, setFirstRender ] = useState(0)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
+    if (firstRender < 1) {
+      setFirstRender(1)
+      return
+    }
     dispatch(fetchContacts())
-  }, [dispatch])
+  }, [dispatch, firstRender]);
 
   const renderContactsHandler = () => {
     

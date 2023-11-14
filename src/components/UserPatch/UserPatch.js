@@ -10,7 +10,7 @@ const StyledContainer = styled.div`
 `
 
 const UserPatch = () => {
-  const { user, token } = useSelector(selectAuth)
+  const { user } = useSelector(selectAuth)
   const dispatch = useDispatch()
   return (
     <StyledContainer>

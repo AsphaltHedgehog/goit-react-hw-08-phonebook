@@ -12,7 +12,13 @@ import Filter from 'components/ContactsBook/Filter/Filter';
 import { selectAuth } from 'redux/selectors';
 
 // styles
-import css from './contactsbook.module.css';
+import {
+  StyledContainer,
+  StyledHeader,
+  StyledTitle,
+  StyledList,
+} from './ContactBookStyled.js';
+
 
 
 
@@ -27,19 +33,19 @@ function ContactsBook() {
   }, [isLoggedIn, nav]);
 
   return (
-    <div className={css.container}>
-      <h1 className={css.header}>Phonebook</h1>
-      <ContactsForm/>
+    <StyledContainer>
+      <StyledHeader>Phonebook</StyledHeader>
+      <ContactsForm />
       <div>
-        <h2 className={css.title}>Contacts</h2>
-          <div>
-            <Filter/>
-            <ul className={css.list}>
-              <ContactsList/>
-            </ul>
-          </div>
+        <StyledTitle>Contacts</StyledTitle>
+        <div>
+          <Filter />
+          <StyledList>
+            <ContactsList />
+          </StyledList>
+        </div>
       </div>
-    </div>
+    </StyledContainer>
   );
 };
 

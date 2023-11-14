@@ -1,11 +1,12 @@
-import css from './contactlist.module.css'
-
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { selectStatusFilter, selectContacts} from "redux/selectors";
-import { useEffect, useState } from 'react';
 import { fetchContacts, deleteContact } from 'redux/operation';
+
 import Modal from 'components/Modal/Modal';
+
+import { StyledWrapper, StyledContactItem, StyledButton } from './StyledContactList.js';
 
 function ContactsList() {
   const {items, isLoading, error} = useSelector(selectContacts);
@@ -37,24 +38,18 @@ function ContactsList() {
       contact.name.toLowerCase().includes(filter.toLowerCase()));
 
     return filteredList.map(({ id, name, number }) => (
-      <li key={id} className={css.item}>{name}: {number}
-        <button
-          type='button'
-          onClick={() => handleEditClick({id, name, number})}
-          className={css.btn}
-        >Edit</button>
-        <button
-          type='button'
-          onClick={() => dispatch(deleteContact(id))}
-          className={css.btn}
-        >Delete</button>
-      </li>
+      <StyledContactItem key={id} >{name}: {number}
+        <StyledButton type='button' onClick={() => handleEditClick({id, name, number})}>Edit</StyledButton>
+        <StyledButton type='button' onClick={() => dispatch(deleteContact(id))}>Delete</StyledButton>
+      </StyledContactItem>
     ));
   };
 
 
+
+
   return (
-    <div className={css.wrapper}>
+    <StyledWrapper>
       {isLoading && !error && <p>Loading</p>}
       {error && <p>{ error }</p>}
       {items.length > 0 && renderContactsHandler()}
@@ -63,7 +58,7 @@ function ContactsList() {
         contact={editingContact}
         onClose={() => setIsModalOpen(false)}
       />)}
-    </div>
+    </StyledWrapper>
   );
 };
 

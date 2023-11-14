@@ -1,8 +1,11 @@
+import React from 'react';
+import { StyledContainer, StyledText } from './StyledHome.js';
+
 const Home = () => {
   return (
-    <div>
-      <p>Home page</p>
-    </div>
+    <StyledContainer>
+      <StyledText>Home page</StyledText>
+    </StyledContainer>
   );
 };
 

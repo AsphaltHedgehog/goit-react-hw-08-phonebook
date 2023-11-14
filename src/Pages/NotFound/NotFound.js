@@ -1,8 +1,11 @@
+import React from 'react';
+import { StyledContainer, StyledText } from './StyledNotFound.js';
+
 const NotFound = () => {
   return (
-    <div>
-      <p>Sorry, this page does not exist</p>
-    </div>
+    <StyledContainer>
+      <StyledText>Sorry, this page does not exist</StyledText>
+    </StyledContainer>
   );
 };
 

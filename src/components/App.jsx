@@ -1,6 +1,5 @@
 // base
-import { Routes, Route, NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { Routes, Route } from "react-router-dom";
 
 // hook's 
 import { useState } from "react";
@@ -19,35 +18,15 @@ import Home from "Pages/Home/Home.js";
 import { selectAuth } from "redux/selectors";
 
 // components
-import UserPatch from "./UserPatch/UserPatch.js";
 import authOperations from "redux/auth/auth-operations.js";
-
-
-const StyledLink = styled(NavLink)`
-  color: grey;
-
-  &.active {
-    color: turquoise;
-  }
-`;
-
-const StyledNav = styled.div`
-  display: flex;
-  gap: 10px;
-`;
-
-const StyledDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
+import Header from "./Header/Header.js";
 
 
 
-/* <Route path='' element={ NotFoundPage } /> */
 
 const App = () => {
   const [firstRender, setFirstRender ] = useState(0)
-  const { isLoggedIn, token } = useSelector(selectAuth);
+  const { token } = useSelector(selectAuth);
 
   const dispatch = useDispatch()
 
@@ -64,19 +43,7 @@ const App = () => {
   
   return (
     <>
-      <StyledDiv>
-        <StyledNav>
-          <StyledLink to='/' end> Home </StyledLink>
-          {isLoggedIn ? 
-            <StyledLink to='/contacts'> Contacts </StyledLink> :
-            <>
-              <StyledLink to='/register'> Register </StyledLink>
-              <StyledLink to='/login'> Login </StyledLink>
-            </>
-          }
-        </StyledNav>
-        {isLoggedIn && <UserPatch />}
-      </StyledDiv>
+      <Header/>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/contacts" element={<ContactsBook />} />

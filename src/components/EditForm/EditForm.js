@@ -8,6 +8,15 @@ import { editContact } from 'redux/operation';
 import PropTypes from 'prop-types';
 
 
+import {
+  StyledForm,
+  StyledLabel,
+  StyledInput,
+  StyledErrorMessageContainer,
+  StyledButton,
+} from "./StyledEditForm.js";
+
+
 const validationSchema = yup.object().shape({
   name: yup.string().min(3, 'Name must be at least 3 characters').max(20, 'Name must be less then twenty characters').required('Name is required'),
   number: yup.string().min(6, 'Number must contain at least six symbols').max(12, 'Number must be less then twelve symbols').required('Number is required')
@@ -33,27 +42,29 @@ const EditForm = ({ data, onClose }) => {
     onClose();
   };
 
+
+
   return (
     <Formik
       initialValues={data}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      <Form>
+      <StyledForm>
         <div>
-          <label>Имя</label>
-          <Field type="text" name="name" />
-          <ErrorMessage name="name" component="p" />
+          <StyledLabel>Имя</StyledLabel>
+          <StyledInput type="text" name="name" />
+          <StyledErrorMessageContainer name="name" component="p" />
         </div>
 
         <div>
-          <label>Номер телефона</label>
-          <Field type="text" name="number" />
-          <ErrorMessage name="number" component="p" />
+          <StyledLabel>Номер телефона</StyledLabel>
+          <StyledInput type="text" name="number" />
+          <StyledErrorMessageContainer name="number" component="p" />
         </div>
 
-        <button type="submit">Сохранить</button>
-      </Form>
+        <StyledButton type="submit">Сохранить</StyledButton>
+      </StyledForm>
     </Formik>
   );
 };

@@ -25,8 +25,9 @@
 
 .btn {
   max-width: 120px;
-  padding: 10px;
+  padding: 10px 15px;
   border: none;
+  align-self: end;
 
   border-radius: 4px;
   background-color: rgb(103, 216, 216);
@@ -36,6 +37,7 @@
 
 .btn:hover,
 .btn:focus {
-  transform: scale(1.1);
+  cursor: pointer;
+  transform: scale(1.2);
   background-color: rgb(86, 243, 230);
 }

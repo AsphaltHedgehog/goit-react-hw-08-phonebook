@@ -5,8 +5,20 @@ import { useNavigate } from "react-router-dom";
 
 import authOperations from "redux/auth/auth-operations";
 
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
+
+
+import {
+  StyledContainer,
+  StyledFormContainer,
+  StyledForm,
+  StyledLabel,
+  StyledInput,
+  StyledErrorMessageContainer,
+  StyledButton,
+} from "./StyledLoginForm.js";
+
 
 
 const validationSchema = yup.object().shape({
@@ -32,28 +44,33 @@ const LogInForm = () => {
     resetForm();
   };
 
+
+
+
   return (
-    <div>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <div>
-            <label> Email </label>
-            <Field type='email' name="email" placeholder="enter email" />
-            <ErrorMessage name="email" component="div" />
-          </div>
-          <div>
-            <label> Password </label>
-            <Field type='password' name="password" placeholder="enter password" />
-            <ErrorMessage name="password" component="div" />
-          </div>
-          <button type='submit'> Login </button>
-        </Form>
-      </Formik>
-    </div>
+    <StyledContainer>
+      <StyledFormContainer>
+        <Formik
+          initialValues={{ email: '', password: '' }}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          <StyledForm>
+            <div>
+              <StyledLabel> Email </StyledLabel>
+              <StyledInput type='email' name="email" placeholder="enter email" />
+              <StyledErrorMessageContainer name="email" component="div" />
+            </div>
+            <div>
+              <StyledLabel> Password </StyledLabel>
+              <StyledInput type='password' name="password" placeholder="enter password" />
+              <StyledErrorMessageContainer name="password" component="div" />
+            </div>
+            <StyledButton type='submit'> Login </StyledButton>
+          </StyledForm>
+        </Formik>
+      </StyledFormContainer>
+    </StyledContainer>
   );
 };
 

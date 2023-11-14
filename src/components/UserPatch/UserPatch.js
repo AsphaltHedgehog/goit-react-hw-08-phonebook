@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuth } from "redux/selectors";
-// import styled from "styled-components";
 
 import authOperations from "redux/auth/auth-operations";
 

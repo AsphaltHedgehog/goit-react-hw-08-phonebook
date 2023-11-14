@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addContact, deleteContact, fetchContacts } from './operation';
+import { addContact, deleteContact, editContact, fetchContacts } from './operation';
 
 const initialState = {
   items: [],
@@ -51,6 +51,19 @@ const contactsSlice = createSlice({
     },
 
     [deleteContact.rejected]: handleReject,
+    // edit contact
+    [editContact.pending]: handlePending,
+    [editContact.fulfilled](state, action) {
+      state.isLoading = false;
+      const editedContactIndex = state.items.findIndex(
+        (contact) => contact.id === action.payload.id
+      );
+
+      if (editedContactIndex !== -1) {
+        state.items[editedContactIndex] = action.payload;
+      }
+    },
+    [editContact.rejected]: handleReject,
   }
 });
 

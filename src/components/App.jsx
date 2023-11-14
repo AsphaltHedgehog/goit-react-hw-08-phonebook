@@ -1,19 +1,26 @@
+// base
 import { Routes, Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import ContactsBook from "./ContactsBook/ContactsBook.js";
-import RegisterForm from "./AuthForms/RegisterForm.js";
-import LogInForm from "./AuthForms/LogInForm.js";
-
+// hook's 
+import { useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector.js";
-import { selectAuth } from "redux/selectors";
-import UserPatch from "./UserPatch/UserPatch.js";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import authOperations from "redux/auth/auth-operations.js";
-import { useState } from "react";
+// pages
+import ContactsBook from "Pages/ContactsBook/ContactsBook.js";
+import RegisterForm from "Pages/Register/RegisterForm.js";
+import LogInForm from "Pages/Login/LogInForm.js";
+import NotFound from "Pages/NotFound/NotFound.js";
+import Home from "Pages/Home/Home.js";
 
+// selectors
+import { selectAuth } from "redux/selectors";
+
+// components
+import UserPatch from "./UserPatch/UserPatch.js";
+import authOperations from "redux/auth/auth-operations.js";
 
 
 const StyledLink = styled(NavLink)`
@@ -59,19 +66,23 @@ const App = () => {
     <>
       <StyledDiv>
         <StyledNav>
-          <StyledLink to='/' end> Contacts </StyledLink>
-          {!isLoggedIn &&
+          <StyledLink to='/' end> Home </StyledLink>
+          {isLoggedIn ? 
+            <StyledLink to='/contacts'> Contacts </StyledLink> :
             <>
-              <StyledLink to='/register' end> Register </StyledLink>
-              <StyledLink to='/login' end> Login </StyledLink>
-            </>}
+              <StyledLink to='/register'> Register </StyledLink>
+              <StyledLink to='/login'> Login </StyledLink>
+            </>
+          }
         </StyledNav>
         {isLoggedIn && <UserPatch />}
       </StyledDiv>
       <Routes>
-        <Route path="/" element={<ContactsBook />} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/contacts" element={<ContactsBook />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LogInForm />} />
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </>
   );
